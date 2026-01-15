@@ -1,1 +1,56 @@
+## Day 3 – PySpark Transformations (Derived Columns)
+
+### Objective
+Create a derived feature using PySpark and understand the performance difference between:
+- Python UDFs
+- Native Spark expressions
+
+---
+
+### Task
+Bucket product prices into three categories:
+- `low`   : price < 100  
+- `medium`: price < 500  
+- `high`  : price ≥ 500  
+
+A new column `price_bucket` was added using `withColumn`.
+
+---
+
+### Approach 1: Python UDF
+- Defined a Python function to classify prices
+- Registered it as a Spark UDF
+- Applied it to the DataFrame
+
+**Observation**
+- Output is correct
+- Execution is slower
+- Logic runs row-by-row in Python
+- Spark optimizer cannot optimize UDF logic
+
+---
+
+### Approach 2: Native Spark Functions
+- Used `when` / `otherwise` with column expressions
+- Executed fully inside the Spark engine
+
+**Observation**
+- Output matches UDF result
+- Execution is significantly faster
+- Spark can optimize the transformation
+
+---
+
+### Key Learnings
+- Prefer native Spark functions over Python UDFs
+- UDFs should be used only when logic cannot be expressed using Spark SQL functions
+- Transformation choice directly impacts performance
+- `withColumn` is a common pattern for feature creation in Spark
+
+---
+
+### Outcome
+- Successfully created a derived column (`price_bucket`)
+- Improved understanding of Spark-optimized transformations
+- Learned when to avoid Python UDFs in data processing workflows
 
