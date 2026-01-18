@@ -1,1 +1,23 @@
+Day 4 — Delta Lake Introduction
 
+Today I learned the basics of Delta Lake and how it extends Parquet to make data storage more reliable in Databricks.
+
+What I did
+
+Converted the ecommerce events dataset into Delta format
+
+Saved Delta data to a storage path using PySpark
+
+Explored the generated files inside the Delta folder
+
+Key Observations
+
+Delta stores data as multiple Parquet part-files
+
+Delta also creates a _delta_log folder
+
+The _delta_log contains transaction log JSON files, which help track table versions and enable time travel/version history
+
+Key Takeaway
+
+Delta Lake = Parquet storage + transaction log, making datasets more structured and reliable for analytics workflows.
